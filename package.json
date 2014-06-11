@@ -1,0 +1,32 @@
+{
+  "name": "PricingApp",
+  "version": "0.0.0",
+  "description": "Pricing Application for Bracket",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuftsdev/comp20-nkarpinski.git"
+  },
+  "author": "NolanKarpinski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuftsdev/comp20-nkarpinski/issues"
+  },
+  "homepage": "https://github.com/tuftsdev/comp20-nkarpinski",
+  "dependencies": {
+    "body-parser": "^1.3.0",
+    "bson": "^0.2.8",
+    "ejs": "*",
+    "express": "^4.4.1",
+    "json": "^9.0.1",
+    "logfmt": "^1.1.2",
+    "logger": "0.0.1",
+    "morgan": "^1.1.1",
+    "path": "^0.4.9",
+    "urlencode": "^0.2.0",
+    "xlsx-to-json": "^0.2.3"
+  }
+}
