@@ -1,5 +1,19 @@
 var numrows = 0;
 
+function openEstimate() {   
+
+    validateSelections();
+console.log("here");
+    storeSelections()
+    validateDiscounts();
+
+    sessionStorage.setItem("storagediscount", $("#storagediscount").val()/100);
+    sessionStorage.setItem("computediscount", $("#computediscount").val()/100);
+    sessionStorage.setItem("supportdiscount", $("#supportdiscount").val()/100);
+    
+    window.location.href = "estimate.html"; 
+}
+
 function validateSelections(){
 
 	if(($("#snapshot").val() < 0)){
@@ -41,7 +55,7 @@ function validateSelections(){
 }
 
 function storeSelections() {
-
+console.log('storing');
 	sessionStorage.setItem("storage", $("#storage").val());
 	sessionStorage.setItem("IOPS", $("#IOPS").val());
 	sessionStorage.setItem("uptime", $("#uptime").val()/100);
@@ -172,18 +186,6 @@ function subtractInstance(){
 	}
 }
 
-function openEstimate() {   
-    
-    validateSelections();
-    storeSelections();
-    validateDiscounts();
-
-    sessionStorage.setItem("storagediscount", $("#storagediscount").val()/100);
-    sessionStorage.setItem("computediscount", $("#computediscount").val()/100);
-    sessionStorage.setItem("supportdiscount", $("#supportdiscount").val()/100);
-    
-    window.location.href = "estimate.html"; 
-}
 
 function validateDiscounts() {
 
