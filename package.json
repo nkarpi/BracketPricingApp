@@ -24,7 +24,7 @@
     "json": "^9.0.1",
     "logfmt": "^1.1.2",
     "logger": "0.0.1",
-    "morgan": "^1.1.1",
+    "morgan": "*",
     "path": "^0.4.9",
     "urlencode": "^0.2.0",
     "xlsx-to-json": "^0.2.3"
