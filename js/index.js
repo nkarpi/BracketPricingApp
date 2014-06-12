@@ -66,13 +66,6 @@ function storeSelections() {
 
 }
 
-function openDiscounts() {
-
-	validateSelections();
-	storeSelections();
-	window.location.href = "discounts.html";
-}
-
 function isNumber(n) {
   	return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -180,7 +173,9 @@ function subtractInstance(){
 }
 
 function openEstimate() {   
-
+    
+    validateSelections();
+    storeSelections();
     validateDiscounts();
 
     sessionStorage.setItem("storagediscount", $("#storagediscount").val()/100);
