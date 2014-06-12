@@ -20,6 +20,7 @@
     <link href="css/navbar-fixed-top.css" rel="stylesheet" type="text/css">
     <link href="css/custom.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="../js/discount.js"></script>
 
   </head>
 
@@ -87,26 +88,45 @@
       </tr>
       <tr>
         <td><form name="Storage Capacity">
-            <input type="text" name="user" maxlength="15" id="storage" value="4000"/> GB
+            <input type="text" name="user" maxlength="15" class="storageinput" id="storage" value="200"/> GB
         </form></td>
         <td><form name="IOPS">
-            <input type="text" name="user" maxlength="15" id="IOPS" value="10000"/>
+            <input type="text" name="user" maxlength="15" class="storageinput" id="IOPS" value="200"/>
         </form></td>
         <td><form name="Up-Time">
-            <input type="text" name="user" maxlength="15" id="uptime" value="50"/> %
+            <input type="text" name="user" maxlength="15" class="storageinput" id="uptime" value="100"/> %
         </form></td>
         <td><form name="Snapshot">
-            <input type="text" name="user" maxlength="15" id="snapshot" value="80"/> %
+            <input type="text" name="user" maxlength="15" class="storageinput" id="snapshot" value="50"/> %
         </form></td>
         <td><form name="Tier">
           <select #tier id="tier">          
-          <option value="TIER 2 Response Time Tier">Tier 2</option>
+          <option value="TIER 0 Response Time Tier">Tier 0</option>
           </select>
         </form></td>
       </tr>
     </table>
+    <h4>Discounts</h4>
+    <table class="discounttable">
+      <tr>
+        <th>Storage Discount</th>
+        <th>Compute Discount</th>
+        <th>Support Discount</th>
+      </tr>
+      <tr>
+        <td><form name="Storage Discount">
+            <input type="text" name="user" maxlength="15" id="storagediscount" class="discountinput" value="0"/> %
+        </form></td>
+        <td><form name="Compute Disount">
+            <input type="text" name="user" maxlength="15" id="computediscount" class="discountinput" value="0"/> %
+        </form></td>
+        <td><form name="Support Discount">
+            <input type="text" name="user" maxlength="15" id="supportdiscount" class="discountinput" value="0"/> %
+        </form></td>
+      </tr>
+    </table>
     <form class="instanceform">
-      <button class="submitbutton" type="button" onclick="openDiscounts()">Submit</button>
+      <button class="submitbutton" type="button" onclick="openEstimate()">Calculate</button>
     </form>
     <div class="footer">
       <p>&copy; Bracket Computing 2014</p>

@@ -37,17 +37,18 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/discounts.html', function(req, res) {
-	res.render('discounts');
+app.get('/form.html', function(req, res) {
+	res.render('form');
 });
 
 app.get('/estimate.html', function(req, res) {
 	res.render('estimate');
 });
 
-app.get('/Estimate.pdf', function(req, res) {
-	res.render('estimate');
-});
+//app.get('/Estimate.pdf', function(req, res) {
+//	res.render('estimate');
+//});
+
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {

@@ -76,14 +76,14 @@ h4{
 .generaltable{
 	position: relative;
 	left: 30px;
-	width: 320px;
+	width: 280px;
 	border: 1px solid #000000;
 }
 
 .storagetable{
 	position: relative;
 	left: 30px;
-	width: 800px;
+	width: 650px;
 }
 
 #instancetable{
@@ -138,11 +138,30 @@ tr, th, td {
 .discounttable {
 	position: relative;
 	left: 30px;
-	width: 450px;
+	width: 390px;
 }
 
 .discountinput {
 	width: 50px;
 }
+
+.prepared {
+	text-align: left;
+	width: 200px;
+}
+
+.storageinput{
+	width: 50px;
+}
+
+#page {
+	position: relative;
+	left: 10px;
+	font-size: 15px;
+	line-height: 20px;
+
+}
+
+
 
 

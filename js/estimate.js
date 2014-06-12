@@ -3,6 +3,7 @@ var compute1year = 0;
 var storage1year = 0;
 var security1year = 0;
 var TOTAL = 0;
+var support1year = 0;
 
 function load() {
 	$.getJSON( "data.json" , function(data){
@@ -22,7 +23,7 @@ function calculate() {
 	var numinstances = sessionStorage.getItem("numinstances");
 	var computediscount = sessionStorage.getItem("computediscount");
 	var storagediscount = sessionStorage.getItem("storagediscount");
-	var securitydiscount = sessionStorage.getItem("securitydiscount");
+	var supportdiscount = sessionStorage.getItem("supportdiscount");
 
 	var instancePrice_hour; //per hour
 	var IOPSPrice_month; //per month
@@ -79,47 +80,46 @@ function calculate() {
 			}
 
 		}
+		// _x means "this instance" (this iteration of the instance loop)
+		//algorithms for calculating final prices for a 1 year outlook
 
-		var compute1year_x = uptime * 24 * 365 * (1 - computediscount) * instancePrice_hour;
-		var IOPS1year_alone = IOPSPrice_month * 12 * IOPS * (1 - storagediscount);
-		var storage1year_alone = storagePrice_month * 12 * storage * (1 - storagediscount); //volume capacity only, price for one year
-		var responsetime1year_kicker = (IOPS1year_alone + storage1year_alone) * tierPrice_percentage;
-		var activeencryption1year_final = responsetime1year_kicker * dataatrestEncryption_percentage * uptime;
-		var responsetime1year_final = responsetime1year_kicker * uptime;
-		var IOPS1year_final = IOPS1year_alone * uptime;
-		var storage1year_final = storage1year_alone * uptime;
+		var compute1year_x = uptime * 12 * 720 * (1 - computediscount) * instancePrice_hour;
+		var IOPS1year_raw = IOPSPrice_month * 12 * IOPS * (1 - storagediscount);
+		var storage1year_raw = storagePrice_month * 12 * storage * (1 - storagediscount); //volume capacity only, price for one year
+		var responsetime1year = (IOPS1year_raw + storage1year_raw) * tierPrice_percentage * uptime;
+		var IOPS1year_final = IOPS1year_raw * uptime;
+		var blockstorage1year_active = storage1year_raw * uptime;
 		
-		var activestorage1year = responsetime1year_final + IOPS1year_final + storage1year_final + activeencryption1year_final;
-		var passivestorage1year_alone = (storage * storagePrice_month * (1 - storagediscount) * (1 - uptime) * 12);
-		var passivestorage1year_encryption = passivestorage1year_alone * dataatrestEncryption_percentage;
-		var passivestorage1year = passivestorage1year_encryption + passivestorage1year_alone;
-
-		var snapshot1year_alone = storage * storagePrice_month * (1 - storagediscount) * snapshot * 12;
-		var snapshot1year_encryption = snapshot1year_alone * dataatrestEncryption_percentage;
-		var snapshot1year = snapshot1year_alone + snapshot1year_encryption;
-
+		var activestorage1year = responsetime1year + IOPS1year_final + blockstorage1year_active;
+		var snapshot1year = storage * storagePrice_month * (1 - storagediscount) * snapshot * 12;
+		var passivestorage1year = storage1year_raw * (1 - uptime);
 		var storage1year_x = activestorage1year + passivestorage1year + snapshot1year;
 
-		var security1year_x = activeencryption1year_final + passivestorage1year_encryption + snapshot1year_encryption;
-
-		storage1year_x -= security1year_x;
+		//encryption calculations
+		var passivestorage1year_encryption = passivestorage1year * dataatrestEncryption_percentage;
+		var activestorage1year_encryption = (responsetime1year + blockstorage1year_active + IOPS1year_final) * dataatrestEncryption_percentage;
+		var snapshot1year_encryption = snapshot1year * dataatrestEncryption_percentage;
+		var security1year_x = activestorage1year_encryption + passivestorage1year_encryption + snapshot1year_encryption;
 
 		//account for quantity of instance
-		storage1year_x *= quantity;
 		compute1year_x *= quantity;
-		security1year_x *= quantity;
 		//add the _x quantities (instance specific) to the running totals
 		storage1year += storage1year_x;
 		compute1year += compute1year_x;
 		security1year += security1year_x;
 	}
+	TOTAL = compute1year + security1year + storage1year;
+
+	support1year = TOTAL * (1 - supportdiscount) * 0.20;
+
+	sessionStorage.setItem("TOTAL", TOTAL);
+	sessionStorage.setItem("SupportCost", support1year);
+	sessionStorage.setItem("StorageCost", storage1year);
+	sessionStorage.setItem("ComputeCost", compute1year);
 	print();
 }
 
 function generatePDF() {
-	sessionStorage.setItem("SecurityCost", security1year);
-	sessionStorage.setItem("StorageCost", storage1year);
-	sessionStorage.setItem("ComputeCost", compute1year);
 
 	sessionStorage.setItem("preparedFor_name", $("#preparedFor_name").val());
 	sessionStorage.setItem("preparedFor_company", $("#preparedFor_company").val());
@@ -133,17 +133,19 @@ function generatePDF() {
 
 function print() {
 
-	compute1year = Math.round(compute1year);
-	storage1year = Math.round(storage1year);
-	security1year = Math.round(security1year);
+	support1year = Math.round(100*support1year)/100;
+	compute1year = Math.round(100*compute1year)/100;
+	storage1year = Math.round(100*storage1year)/100;
+	security1year = Math.round(100*security1year)/100;
 
 	var page = document.getElementById("page");
-	page.innerHTML = "Compute Total: " + compute1year + "</br>";
-	page.innerHTML += "Storage Total: " + storage1year + "</br>";
-	page.innerHTML += "Security Total: " + security1year + "</br>";
-	page.innerHTML += "-----------------------------" + "</br>";
-	TOTAL1year = compute1year + security1year + storage1year;
-	page.innerHTML += "TOTAL: " + TOTAL1year;
-
+	page.innerHTML = "Compute Total: $" + compute1year + "</br>";
+	page.innerHTML += "Storage Total: $" + storage1year + "</br>";
+	page.innerHTML += "Security Total: $" + security1year + "</br>";
+	page.innerHTML += "----------------------------------------------" + "</br>";
+	TOTAL = compute1year + security1year + storage1year;
+	page.innerHTML += "Total Volume Estimate: $" + TOTAL + "</br>";
+	page.innerHTML += "Enterprise Support: $" + support1year;
+	
 }
 
