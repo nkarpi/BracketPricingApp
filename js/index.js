@@ -1,15 +1,18 @@
 var numrows = 0;
+var IOPSwhich;
+var Capwhich;
+
+function init() {
+    addInstance();
+    IOPSnogrowth();
+    Capnogrowth();
+}
 
 function openEstimate() {   
 
     validateSelections();
-console.log("here");
     storeSelections()
     validateDiscounts();
-
-    sessionStorage.setItem("storagediscount", $("#storagediscount").val()/100);
-    sessionStorage.setItem("computediscount", $("#computediscount").val()/100);
-    sessionStorage.setItem("supportdiscount", $("#supportdiscount").val()/100);
     
     window.location.href = "estimate.html"; 
 }
@@ -55,7 +58,21 @@ function validateSelections(){
 }
 
 function storeSelections() {
-console.log('storing');
+
+    sessionStorage.setItem("IOPSlinear", $("#IOPSlinear").val());
+    sessionStorage.setItem("IOPSnonlinear", $("#IOPSnonlinear").val());
+    sessionStorage.setItem("IOPStimeframe", $("#IOPStimeframe").val());
+    sessionStorage.setItem("IOPSwhich", IOPSwhich);
+
+    sessionStorage.setItem("Caplinear", $("#Caplinear").val());
+    sessionStorage.setItem("Capnonlinear", $("#Capnonlinear").val());
+    sessionStorage.setItem("Captimeframe", $("#Captimeframe").val());
+    sessionStorage.setItem("Capwhich", Capwhich);
+
+    sessionStorage.setItem("storagediscount", $("#storagediscount").val()/100);
+    sessionStorage.setItem("computediscount", $("#computediscount").val()/100);
+    sessionStorage.setItem("supportdiscount", $("#supportdiscount").val()/100);
+
 	sessionStorage.setItem("storage", $("#storage").val());
 	sessionStorage.setItem("IOPS", $("#IOPS").val());
 	sessionStorage.setItem("uptime", $("#uptime").val()/100);
@@ -210,6 +227,207 @@ function validateDiscounts() {
 function isNumber(n) {
     return (!isNaN(parseFloat(n)) && isFinite(n));
 }
+
+function IOPSlinear(){
+    IOPSwhich = "linear";
+
+    var table = document.getElementById("IOPSgrowthtable");
+    while(table.rows.length > 0){
+        table.deleteRow(table.rows.length - 1);
+    }
+    var row1 = table.insertRow(-1);
+    var cell1 = row1.insertCell(0);
+    var Hperiod = document.createTextNode("Growth Period");
+    cell1.appendChild(Hperiod);
+    var cell2 = row1.insertCell(1);
+    var Hpercentage = document.createTextNode("Final IOPS After Growth Period");
+    cell2.appendChild(Hpercentage);
+
+
+
+    var row2 = table.insertRow(-1);
+    var cell1 = row2.insertCell(0);
+    var element1 = document.createElement("SELECT");
+    var option1 = document.createElement("option");
+    option1.text = "12 Months";
+    option1.value = 12;
+    //element1.add(option1);
+    var option2 = document.createElement("option");
+    option2.text = "36 Months";
+    option2.value = 36;
+    option2.selected = "selected";
+    element1.add(option2);
+    element1.id = "IOPStimeframe";
+    cell1.appendChild(element1);
+    var cell2 = row2.insertCell(1);
+    var input = document.createElement("INPUT");
+    input.type = "text";
+    input.className = "discountinput";
+    input.id = "IOPSlinear";
+    var text = document.createTextNode("  IOPS");
+    cell2.appendChild(input);
+    cell2.appendChild(text);
+}
+
+function IOPSnonlinear(){
+    IOPSwhich = "non";
+
+    var table = document.getElementById("IOPSgrowthtable");
+    while(table.rows.length > 0){
+        table.deleteRow(table.rows.length - 1);
+    }
+    var row1 = table.insertRow(-1);
+    var cell1 = row1.insertCell(0);
+    var Hperiod = document.createTextNode("Growth Period");
+    cell1.appendChild(Hperiod);
+    var cell2 = row1.insertCell(1);
+    var Hpercentage = document.createTextNode("Growth Per Month");
+    cell2.appendChild(Hpercentage);
+
+
+    var row2 = table.insertRow(-1);
+    var cell1 = row2.insertCell(0);
+    var element1 = document.createElement("SELECT");
+    var option1 = document.createElement("option");
+    option1.text = "12 Months";
+    option1.value = 12;
+    //element1.add(option1);
+    var option2 = document.createElement("option");
+    option2.text = "36 Months";
+    option2.value = 36;
+    option2.selected = "selected";
+    element1.add(option2);
+    element1.id = "IOPStimeframe";
+    cell1.appendChild(element1);
+    var cell2 = row2.insertCell(1);
+    var input = document.createElement("INPUT");
+    input.type = "text";
+    input.className = "discountinput";
+    input.id = "IOPSgrowthpercentage";
+    var text = document.createTextNode("  %");
+    cell2.appendChild(input);
+    cell2.appendChild(text);
+}
+
+function IOPSnogrowth(){
+    IOPSwhich = "no";
+
+    var table = document.getElementById("IOPSgrowthtable");
+    while(table.rows.length > 0){
+        table.deleteRow(table.rows.length - 1);
+    }
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var text = document.createTextNode("No Growth");
+    cell1.appendChild(text);
+}
+
+function Caplinear(){
+    Capwhich = "linear";
+
+    var table = document.getElementById("Capgrowthtable");
+    while(table.rows.length > 0){
+        table.deleteRow(table.rows.length - 1);
+    }
+    var row1 = table.insertRow(-1);
+    var cell1 = row1.insertCell(0);
+    var Hperiod = document.createTextNode("Growth Period");
+    cell1.appendChild(Hperiod);
+    var cell2 = row1.insertCell(1);
+    var Hpercentage = document.createTextNode("Final Capacity After Growth Period");
+    cell2.appendChild(Hpercentage);
+
+
+
+    var row2 = table.insertRow(-1);
+    var cell1 = row2.insertCell(0);
+    var element1 = document.createElement("SELECT");
+    var option1 = document.createElement("option");
+    option1.text = "12 Months";
+    option1.value = 12;
+    //element1.add(option1);
+    var option2 = document.createElement("option");
+    option2.text = "36 Months";
+    option2.value = 36;
+    option2.selected = "selected";
+    element1.add(option2);
+    element1.id = "Captimeframe";
+    cell1.appendChild(element1);
+    var cell2 = row2.insertCell(1);
+    var input = document.createElement("INPUT");
+    input.type = "text";
+    input.className = "discountinput";
+    input.id = "Caplinear";
+    var text = document.createTextNode("  GB");
+    cell2.appendChild(input);
+    cell2.appendChild(text);
+}
+
+function Capnonlinear(){
+    Capwhich = "non";
+
+    var table = document.getElementById("Capgrowthtable");
+    while(table.rows.length > 0){
+        table.deleteRow(table.rows.length - 1);
+    }
+    var row1 = table.insertRow(-1);
+    var cell1 = row1.insertCell(0);
+    var Hperiod = document.createTextNode("Growth Period");
+    cell1.appendChild(Hperiod);
+    var cell2 = row1.insertCell(1);
+    var Hpercentage = document.createTextNode("Growth Per Month");
+    cell2.appendChild(Hpercentage);
+
+
+
+    var row2 = table.insertRow(-1);
+    var cell1 = row2.insertCell(0);
+    var element1 = document.createElement("SELECT");
+    var option1 = document.createElement("option");
+    option1.text = "12 Months";
+    option1.value = 12;
+    //element1.add(option1);
+    var option2 = document.createElement("option");
+    option2.text = "36 Months";
+    option2.value = 36;
+    option2.selected = "selected";
+    element1.add(option2);
+    element1.id = "Captimeframe";
+    cell1.appendChild(element1);
+    var cell2 = row2.insertCell(1);
+    var input = document.createElement("INPUT");
+    input.type = "text";
+    input.className = "discountinput";
+    input.id = "Capgrowthpercentage";
+    var text = document.createTextNode("  %");
+    cell2.appendChild(input);
+    cell2.appendChild(text);
+
+}
+
+function Capnogrowth(){
+    Capwhich = "no";
+    var table = document.getElementById("Capgrowthtable");
+    while(table.rows.length > 0){
+        table.deleteRow(table.rows.length - 1);
+    }
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var text = document.createTextNode("No Growth");
+    cell1.appendChild(text);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

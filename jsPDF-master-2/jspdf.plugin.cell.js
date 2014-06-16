@@ -29,7 +29,7 @@
  */
 
 (function (jsPDFAPI) {
-    'use strict';
+    //'use strict';
     /*jslint browser:true */
     /*global document: false, jsPDF */
 
@@ -333,7 +333,9 @@
         for (var j = 0; j < headerNames.length; j++) {
             header = headerNames[j];
             model[header] = this.splitTextToSize(String(model[header]), columnWidths[header] - padding);
+
             var h = this.internal.getLineHeight() * model[header].length + padding;
+            
             if (h > lineHeight)
                 lineHeight = h;
         }

@@ -1,60 +1,61 @@
-var storageCost;
-var securityCost;
-var computeCost;
-var preparedFor_company;
-var preparedFor_note;
-var preparedBy_name;
-var preparedBy_email;
-var preparedBy_phone;
-
-function plug() {
-
-	storageCost = sessionStorage.getItem("StorageCost");
-	securityCost = sessionStorage.getItem("SecurityCost");
-	computeCost = sessionStorage.getItem("ComputeCost");
-	preparedFor_name = sessionStorage.getItem("preparedFor_name");
-	preparedFor_company = sessionStorage.getItem("preparedFor_company");
-	preparedFor_note = sessionStorage.getItem("preparedFor_note");
-	preparedBy_name = sessionStorage.getItem("preparedBy_name");
-	preparedBy_email = sessionStorage.getItem("preparedBy_email");
-	preparedBy_phone = sessionStorage.getItem("preparedBy_phone");
-
-}
-
+/*
 function generate() {
-	plug();
+	var img;
 
-	var doc = new jsPDF();
-	doc.text(20, 20, 'Hello world.');
-	doc.text(20, 80, 'GHDGSHDGSDHGSDHGSDGHS');
-	// Empty square
-doc.rect(20, 20, 10, 10); 
+html2canvas($("body"), {
+   onrendered: function(canvas) {
+     var img = canvas.toDataURL()
+  },
+});
 
-// Filled square
-doc.rect(40, 20, 10, 10, 'F');
+var doc = new jsPDF();
+doc.addImage(img, 'JPEG', 15, 40, 180, 160);
+doc.save('test.pdf');
 
-// Empty red square
-doc.setDrawColor(255,0,0);
-doc.rect(60, 20, 10, 10);
+/*
+var pdf = new jsPDF('p', 'pt', 'letter')
 
-// Filled square with red borders
-doc.setDrawColor(255,0,0);
-doc.rect(80, 20, 10, 10, 'FD'); 
+// source can be HTML-formatted string, or a reference
+// to an actual DOM element from which the text will be scraped.
+var source = $('#testdiv')[0];
 
-// Filled red square
-doc.setDrawColor(0);
-doc.setFillColor(255,0,0);
-doc.rect(100, 20, 10, 10, 'F'); 
+// we support special element handlers. Register them with jQuery-style 
+// ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+// There is no support for any other type of selectors 
+// (class, of compound) at this time.
+var specialElementHandlers = {
+    // element with id of "bypass" - jQuery style selector
+    '#bypassme': function(element, renderer){
+        // true = "handled elsewhere, bypass text extraction"
+        return true
+    }
+};
 
- // Filled red square with black borders
-doc.setDrawColor(0);
-doc.setFillColor(255,0,0);
-doc.rect(120, 20, 10, 10, 'FD');
-
-// Black sqaure with rounded corners
-doc.setDrawColor(0);
-doc.setFillColor(255, 255, 255);
-doc.roundedRect(140, 20, 10, 10, 3, 3, 'FD'); 
-	doc.save('Test.pdf');
-
+margins = {
+  top: 80,
+  bottom: 60,
+  left: 40,
+  width: 522
+ };
+ // all coords and widths are in jsPDF instance's declared units
+ // 'inches' in this case
+ pdf.fromHTML(
+    source // HTML string or DOM elem ref.
+    , margins.left // x coord
+    , margins.top // y coord
+    , {
+        'width': margins.width // max width of content on PDF
+        , 'elementHandlers': specialElementHandlers
+    },
+    function (dispose) {
+      // dispose: object with X, Y of the last line add to the PDF 
+      //          this allow the insertion of new lines after html
+      pdf.save('Test.pdf');
+    },
+    margins
+)
 }
+*/
+
+
+

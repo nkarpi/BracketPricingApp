@@ -20,7 +20,7 @@
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -54,7 +54,7 @@
  * @name jsPDF
  */
 var jsPDF = (function(global) {
-	'use strict';
+	//'';
 	var pdfVersion = '1.3',
 		pageFormats = { // Size in pt of various paper formats
 			'a0'  : [2383.94, 3370.39], 'a1'  : [1683.78, 2383.94],
@@ -1717,7 +1717,7 @@ var jsPDF = (function(global) {
  */
 
 (function (jsPDFAPI) {
-	'use strict';
+	'';
 
 	/**
 	 * Renders an HTML element to canvas object which added as an image to the PDF
@@ -1738,7 +1738,7 @@ var jsPDF = (function(global) {
 	 *       size. Ie, to easily take screenshoots of webpages saving them to PDF.
 	 */
 	jsPDFAPI.addHTML = function (element, x, y, options, callback) {
-		'use strict';
+		'';
 
 		if(typeof html2canvas === 'undefined' && typeof rasterizeHTML === 'undefined')
 			throw new Error('You need either '
@@ -1836,7 +1836,7 @@ var jsPDF = (function(global) {
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -1855,7 +1855,7 @@ var jsPDF = (function(global) {
  */
 
 ;(function(jsPDFAPI) {
-	'use strict'
+	''
 
 	var namespace = 'addImage_',
 		supported_image_types = ['jpeg', 'jpg', 'png'];
@@ -2300,7 +2300,7 @@ var jsPDF = (function(global) {
 	};
 
 	jsPDFAPI.addImage = function(imageData, format, x, y, w, h, alias, compression) {
-		'use strict'
+		''
 
 		if(typeof format === 'number') {
 			var tmp = h;
@@ -2377,7 +2377,7 @@ var jsPDF = (function(global) {
 	//a jpeg image and returns [width, height]
 	//Algorithm from: http://www.64lines.com/jpeg-width-height
 	var getJpegSize = function(imgData) {
-		'use strict'
+		''
 		var width, height;
 		// Verify we have a valid jpeg header 0xff,0xd8,0xff,0xe0,?,?,'J','F','I','F',0x00
 		if (!imgData.charCodeAt(0) === 0xff ||
@@ -2448,7 +2448,7 @@ var jsPDF = (function(global) {
 	};
 
 	jsPDFAPI.processJPEG = function(data, index, alias, compression, dataAsBinaryString) {
-		'use strict'
+		''
 		var colorSpace = this.color_spaces.DEVICE_RGB,
 			filter = this.decode.DCT_DECODE,
 			bpc = 8,
@@ -2481,10 +2481,10 @@ var jsPDF = (function(global) {
 
 })(jsPDF.API);
 (function (jsPDFAPI) {
-	'use strict';
+	'';
 
 	jsPDFAPI.autoPrint = function () {
-		'use strict'
+		''
 		var refAutoPrintTag;
 
 		this.internal.events.subscribe('postPutResources', function () {
@@ -2509,7 +2509,7 @@ var jsPDF = (function(global) {
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -2529,7 +2529,7 @@ var jsPDF = (function(global) {
  */
 
 (function (jsPDFAPI) {
-    'use strict';
+    '';
     /*jslint browser:true */
     /*global document: false, jsPDF */
 
@@ -2833,7 +2833,7 @@ var jsPDF = (function(global) {
         for (var j = 0; j < headerNames.length; j++) {
             header = headerNames[j];
             model[header] = this.splitTextToSize(String(model[header]), columnWidths[header] - padding);
-            var h = this.internal.getLineHeight() * model[header].length + padding;
+            var h = this.internal.getLineHeight() * model[header[j]]length + padding;
             if (h > lineHeight)
                 lineHeight = h;
         }
@@ -2900,7 +2900,7 @@ var jsPDF = (function(global) {
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -3733,7 +3733,7 @@ var jsPDF = (function(global) {
 	 * @returns {Object} jsPDF instance
 	 */
 	jsPDFAPI.fromHTML = function (HTML, x, y, settings, callback, margins) {
-		"use strict";
+		"";
 
 		this.margins_doc = margins || {
 			top : 0,
@@ -3752,7 +3752,7 @@ var jsPDF = (function(global) {
  * 
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -3774,7 +3774,7 @@ var jsPDF = (function(global) {
 /*global jsPDF */
 
 (function (jsPDFAPI) {
-    'use strict';
+    '';
     var jsNamesObj, jsJsObj, text;
     jsPDFAPI.addJS = function (txt) {
         text = txt;
@@ -3805,7 +3805,7 @@ var jsPDF = (function(global) {
  * 
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -3825,7 +3825,7 @@ var jsPDF = (function(global) {
  */
 
 (function(jsPDFAPI) {
-'use strict'
+''
 	
 	/*
 	 * @see http://www.w3.org/TR/PNG-Chunks.html
@@ -4141,7 +4141,7 @@ var jsPDF = (function(global) {
 	
 	
 	jsPDFAPI.processPNG = function(imageData, imageIndex, alias, compression, dataAsBinaryString) {
-		'use strict'
+		''
 		
 		var colorSpace = this.color_spaces.DEVICE_RGB,
 			decode = this.decode.FLATE_DECODE,
@@ -4322,7 +4322,7 @@ Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
 /**
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -4342,7 +4342,7 @@ Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
  */
 
 ;(function(jsPDFAPI) {
-'use strict'
+''
 
 /**
 Parses SVG XML and converts only some of the SVG elements into
@@ -4409,7 +4409,7 @@ jsPDFAPI.addSVG = function(svgtext, x, y, w, h) {
 	}
 
 	function convertPathToPDFLinesArgs(path){
-		'use strict'
+		''
 		// we will use 'lines' method call. it needs:
 		// - starting coordinate pair
 		// - array of arrays of vector shifts (2-len for line, 6 len for bezier)
@@ -4504,7 +4504,7 @@ jsPDFAPI.addSVG = function(svgtext, x, y, w, h) {
 /**
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -4524,7 +4524,7 @@ jsPDFAPI.addSVG = function(svgtext, x, y, w, h) {
  */
 
 ;(function(API) {
-'use strict'
+''
 
 /**
 Returns an array of length matching length of the 'word' string, with each
@@ -4742,7 +4742,7 @@ table or other default width is not available.
 @returns {Array} with strings chopped to size.
 */
 API.splitTextToSize = function(text, maxlen, options) {
-	'use strict'
+	''
 
 	if (!options) {
 		options = {}
@@ -4829,7 +4829,7 @@ MIT license.
 /**
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -4849,7 +4849,7 @@ MIT license.
  */
 
 ;(function(API) {
-'use strict'
+''
 
 /*
 # reference (Python) versions of 'compress' and 'uncompress'
@@ -5222,7 +5222,7 @@ API.events.push([
  * 
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
+ * "Software"), to deal in the Software withouion, including
  * without limitation the rights to use, copy, modify, merge, publish,
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
@@ -5242,10 +5242,10 @@ API.events.push([
  */
 
 (function(jsPDFAPI) {
-'use strict';
+'';
 
 jsPDFAPI.putTotalPages = function(pageExpression) {
-	'use strict';
+	'';
         var replaceExpression = new RegExp(pageExpression, 'g');
         for (var n = 1; n <= this.internal.getNumberOfPages(); n++) {
             for (var i = 0; i < this.internal.pages[n].length; i++)
@@ -5272,7 +5272,7 @@ jsPDFAPI.putTotalPages = function(pageExpression) {
 /*! @source http://purl.eligrey.com/github/Blob.js/blob/master/Blob.js */
 
 (function (view) {
-	"use strict";
+	"";
 
 	view.URL = view.URL || view.webkitURL;
 
@@ -5453,7 +5453,7 @@ var saveAs = saveAs
       navigator.msSaveOrOpenBlob && navigator.msSaveOrOpenBlob.bind(navigator))
   // Everyone else
   || (function(view) {
-	"use strict";
+	"";
 	// IE <10 is explicitly unsupported
 	if (typeof navigator !== "undefined" &&
 	    /MSIE [1-9]\./.test(navigator.userAgent)) {
@@ -5880,7 +5880,7 @@ void function(global, callback) {
  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ LIABILITY, WHETHER IN CONTRA LIABILITY, OR TORT (INCLUDING
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
@@ -6398,7 +6398,7 @@ var Deflater = (function(obj) {
 		// length. A higher limit improves compression ratio but degrades the speed.
 		var max_chain_length;
 
-		// Attempt to find a better match only when the current match is strictly
+		// Attempt to find a better match only when the current matchly
 		// smaller than this value. This mechanism is used only for compression
 		// levels >= 4.
 		var max_lazy_match;
@@ -6835,7 +6835,7 @@ var Deflater = (function(obj) {
 
 			return (last_lit == lit_bufsize - 1);
 			// We avoid equality with lit_bufsize because of wraparound at 64K
-			// on 16 bit machines and because stored blocks are restricted to
+			// on 16 bit machines and because stored blocks ared to
 			// 64K-1 bytes.
 		}
 
@@ -7921,7 +7921,7 @@ var Deflater = (function(obj) {
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this 
 # software and associated documentation files (the "Software"), to deal in the Software 
-# without restriction, including without limitation the rights to use, copy, modify, merge, 
+# withouion, including without limitation the rights to use, copy, modify, merge, 
 # publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons 
 # to whom the Software is furnished to do so, subject to the following conditions:
 # 
@@ -8396,7 +8396,7 @@ var Deflater = (function(obj) {
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
+ * to deal in the Software withouion, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
@@ -8979,7 +8979,7 @@ var FlateStream = (function() {
 
 	if (!Array.prototype.forEach) {
 		Array.prototype.forEach = function(fun, thisArg) {
-			"use strict";
+			"";
 
 			if (this === void 0 || this === null || typeof fun !== "function")
 				throw new TypeError();
@@ -8994,7 +8994,7 @@ var FlateStream = (function() {
 
 	if (!Object.keys) {
 		Object.keys = (function () {
-			'use strict';
+			'';
 
 			var hasOwnProperty = Object.prototype.hasOwnProperty,
 				hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),

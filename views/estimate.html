@@ -10,12 +10,24 @@
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/estimate.js"></script>
-    <script type="text/javascript" src="js/jspdf.js"></script>
+    <script type="text/javascript" src="js/estimate.js"></script>
+
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.cell.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.split_text_to_size.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.autoprint.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.addimage.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.addhtml.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.from_html.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.javascript.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.png_support.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.sillysvgrenderer.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script type="text/javascript" src="jsPDF-master-2/jspdf.plugin.total_pages.js"></script>
+    <script type="text/javascript" src="js/html2canvas.js"></script>
+
     <script type="text/javascript" src="js/FileSaver.js"></script>
     <script type="text/javascript" src="js/PDF.js"></script>
-    <script type="text/javascript" src="build/pdfmake.min.js"></script>
-    <script type="text/javascript" src="build/vfs_fonts.js"></script>
 
     <title>Price Estimate</title>
 
@@ -45,41 +57,42 @@
     </div>
     <div id="page">
     </div>
-    <h4>Prepared For:</h4>
-    <table><tr><td>Name:</td>
-      <td><form name="PreparedFor_name">
-            <input type="text" name="user" class="prepared" maxlength="50" id="preparedFor_name" value="Nolan Karpinski"/>
-      </form></td></tr>
-      <tr><td>Company:</td>
-      <td><form name="PreparedFor_company">
-            <input type="text" name="user" class="prepared" maxlength="50" id="preparedFor_company" value="Bracket Computing"/>
-      </form></td></tr>
-      <tr><td>Note:</td>
-      <td><form name="PreparedFor_note">
-              <input type="text" name="user" class="prepared" maxlength="50" id="preparedFor_note" value="Test Instance"/>
-      </form></td></tr>
-    </table>
-    <h4>Prepared By:</h4>
-    <table><tr><td>Name:</td>
-      <td><form name="PreparedBy_name">
-            <input type="text" name="user" class="prepared" maxlength="50" id="preparedBy_name" value="Nolan Karpinski"/>
-      </form></td></tr>
-      <tr><td>Email:</td>
-      <td><form name="PreparedBy_email">
-            <input type="text" name="user" class="prepared" maxlength="50" id="preparedBy_email" value="nolan@brkt.com"/>
-      </form></td></tr>
-      <td>Phone:</td>
-      <td><form name="PreparedBy_phone">
-              <input type="text" name="user" class="prepared" maxlength="50" id="preparedBy_phone" value="541 231 3029"/>
-      </form></td></table>
-    </table>
-    <form class="instanceform">
-      <button class="PDFbutton" type="button" onclick="generatePDF()">Generate PDF</button>
-    </form>
+    <div id="form">
+      <h4>Prepared For:</h4>
+      <table><tr><td>Name:</td>
+        <td><form name="PreparedFor_name">
+              <input type="text" name="user" class="prepared" maxlength="25" id="preparedFor_name" value="Nolan Karpinski"/>
+        </form></td></tr>
+        <tr><td>Company:</td>
+        <td><form name="PreparedFor_company">
+              <input type="text" name="user" class="prepared" maxlength="25" id="preparedFor_company" value="Bracket Computing"/>
+        </form></td></tr>
+        <tr><td>Note:</td>
+        <td><form name="PreparedFor_note">
+                <input type="text" name="user" class="prepared" maxlength="25" id="preparedFor_note" value="Test Instance"/>
+        </form></td></tr>
+      </table>
+      <h4>Prepared By:</h4>
+      <table><tr><td>Name:</td>
+        <td><form name="PreparedBy_name">
+              <input type="text" name="user" class="prepared" maxlength="25" id="preparedBy_name" value="Nolan Karpinski"/>
+        </form></td></tr>
+        <tr><td>Email:</td>
+        <td><form name="PreparedBy_email">
+              <input type="text" name="user" class="prepared" maxlength="25" id="preparedBy_email" value="nolan@brkt.com"/>
+        </form></td></tr>
+        <td>Phone:</td>
+        <td><form name="PreparedBy_phone">
+                <input type="text" name="user" class="prepared" maxlength="25" id="preparedBy_phone" value="541 231 3029"/>
+        </form></td></table>
+      </table>
+      <form class="instanceform">
+        <button class="PDFbutton" type="button" onclick="generatePDF()">Generate PDF</button>
+      </form>
+    </div>
 
     <div class="footer">
       <p>&copy; Bracket Computing 2014</p>
     </div>
-
   </body>
 </html>

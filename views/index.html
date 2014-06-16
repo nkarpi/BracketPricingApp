@@ -22,7 +22,7 @@
 
   </head>
 
-  <body onload="addInstance()">
+  <body onload="init()">
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -104,6 +104,23 @@
         </form></td>
       </tr>
     </table>
+    <h4>Growth</h4>
+      <h5>IOPS Growth:</h5>
+      <form class="instanceform">
+        <button class="growthbuttons" type="button" onclick="IOPSlinear()">Linear Growth</button>
+        <button class="growthbuttons" type="button" onclick="IOPSnonlinear()">Non-Linear Growth</button>
+        <button class="growthbuttons" type="button" onclick="IOPSnogrowth()">No Growth</button>
+      </form>
+      <table id="IOPSgrowthtable" class="growthtable">
+      </table>
+      <h5>Capacity Growth:</h5>
+      <form class="instanceform">
+        <button class="growthbuttons" type="button" onclick="Caplinear()">Linear Growth</button>
+        <button class="growthbuttons" type="button" onclick="Capnonlinear()">Non-Linear Growth</button>
+        <button class="growthbuttons" type="button" onclick="Capnogrowth()">No Growth</button>
+      </form>
+      <table id="Capgrowthtable" class="growthtable">
+      </table>
     <h4>Discounts</h4>
     <table class="discounttable">
       <tr>
@@ -126,9 +143,5 @@
     <form class="instanceform">
       <button class="submitbutton" type="button" onclick="openEstimate()">Calculate</button>
     </form>
-    <div class="footer">
-      <p>&copy; Bracket Computing 2014</p>
-    </div>
-
   </body>
 </html>

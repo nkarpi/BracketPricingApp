@@ -90,6 +90,7 @@ h4{
 	position: relative;
 	left: 30px;
 	top: 10px;
+	bottom: 20px; 
 }
 
 tr, th, td {
@@ -103,6 +104,7 @@ tr, th, td {
 	width: 100px;
 	text-align: middle;
 	position: relative;
+
 }
 
 .instanceform {
@@ -123,6 +125,7 @@ tr, th, td {
 	text-align: middle;
 	width: 100px;
 	top: 10px;
+	margin-bottom: 60px
 }
 
 .quantity {
@@ -154,14 +157,44 @@ tr, th, td {
 	width: 50px;
 }
 
-#page {
-	position: relative;
-	left: 10px;
-	font-size: 15px;
-	line-height: 20px;
-
+.hidden{
+	visibility: hidden;
 }
 
+.middle{
+	text-align: center;
+}
+
+.preparedtable {
+	font-size: 100px;
+	width: 200px;
+	font-weight: bold;
+}
+
+h5{
+	position: relative;
+	left: 35px;
+	padding: 10px;
+}
+
+.growthform{
+	position: relative;
+	left: 10px;
+	bottom: 10px;
+}
+
+.growthbuttons {
+	width: 120px;
+	text-align: middle;
+	position: relative;
+	bottom: 10px;
+}
+
+.growthtable {
+	position: relative;
+	left: 30px;
+	top: 10px;
+}
 
 
 
